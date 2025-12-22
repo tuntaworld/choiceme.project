@@ -2047,7 +2047,7 @@ const IntroSound = (() => {
   function fadeOutIntro1AndStop() {
     els();
     // Fade intro1 out over 2s and then stop completely
-    fadeTo(a1, 0.0, 2000);
+    fadeTo(a1, 0.0, 5000);
     setTimeout(() => {
       if (!a1) return;
       try { a1.pause(); a1.currentTime = 0; } catch(e) {}
@@ -2083,7 +2083,7 @@ const AudioManager = (() => {
     footsteps: 0.50,
     forest23:  0.625,
     forest46:  0.50,
-    forest78:  1.00
+    forest78:  1.25
   };
 
   const FADE_MS = 900;
@@ -3859,7 +3859,7 @@ function startQuiz() {
     playerName = (nameInput?.value || '').trim();
 
     if (playerName.length === 0) {
-        playerName = 'นักเดินทาง'; // Default name if empty
+        playerName = 'Seeker'; // Default name if empty
     }
 
     // reset quiz state (in case user re-enters)
@@ -3882,7 +3882,7 @@ function startQuiz() {
     const flash = document.getElementById('sfx-flash');
 
     // 4) White flash + jump to quiz
-    const flashAtMs = 1700;     // when the white flash happens
+    const flashAtMs = 2100;     // when the white flash happens
     const goToQuizAtMs = 2150;  // when Q1 appears
 
     window.setTimeout(() => {
