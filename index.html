@@ -2119,74 +2119,54 @@ const AudioManager = (() => {
   }
 
 function ramp(fromEl, toEl, toKey) {
-  // กัน ramp ซ้อน: ยกเลิกเฟดเก่าทันที
-  __fadeToken += 1;
-  const token = __fadeToken;
+    const fromStart = fromEl ? fromEl.volume : 0;
+    const toTarget  = GAIN[toKey] ?? 0.5;
 
-  if (__rafId) cancelAnimationFrame(__rafId);
-
-  const fromStart = fromEl ? fromEl.volume : 0;
-  const toTarget  = GAIN[toKey] ?? 0.5;
-
-  const t0 = performance.now();
-  function step(t) {
-    if (token !== __fadeToken) return; // มีเฟดใหม่มาแทนแล้ว หยุดชุดนี้
-
-    const k = Math.min(1, (t - t0) / FADE_MS);
-    if (fromEl) fromEl.volume = fromStart * (1 - k);
-    if (toEl)   toEl.volume = toTarget * k;
-
-    if (k < 1) {
-      __rafId = requestAnimationFrame(step);
-    } else {
-      // stop the old channel
-      if (fromEl) {
-        try { fromEl.pause(); } catch (e) {}
-        fromEl.currentTime = 0;
-        fromEl.volume = 0;
+    const t0 = performance.now();
+    function step(t) {
+      const k = Math.min(1, (t - t0) / FADE_MS);
+      if (fromEl) fromEl.volume = fromStart * (1 - k);
+      if (toEl)   toEl.volume = toTarget * k;
+      if (k < 1) requestAnimationFrame(step);
+      else {
+        // stop the old channel
+        if (fromEl) {
+          try { fromEl.pause(); } catch (e) {}
+          fromEl.currentTime = 0;
+        }
       }
-
-      // ✅ flip active หลังเฟดจบเท่านั้น (กันเพลงทับ)
-      active = (active === "a") ? "b" : "a";
-      __rafId = null;
     }
+    requestAnimationFrame(step);
   }
-
-  __rafId = requestAnimationFrame(step);
-}
 
 function playKey(key, opts = {}) {
-  els();
-  if (!a || !b) return;
+    els();
+    if (!a || !b) return;
 
-  // same track range: keep playing without restarting
-  if (currentKey === key) return;
+    // same track range: keep playing without restarting
+    if (currentKey === key) return;
 
-  const immediate = !!opts.immediate;
+    const immediate = !!opts.immediate;
 
-  const fromEl = (active === "a") ? a : b;
-  const toEl   = (active === "a") ? b : a;
+    const fromEl = (active === "a") ? a : b;
+    const toEl   = (active === "a") ? b : a;
 
-  currentKey = key;
+    currentKey = key;
 
-  // prepare next
-  setSrc(toEl, key);
-  toEl.currentTime = 0;
-  toEl.volume = immediate ? (GAIN[key] ?? 0.5) : 0;
-  safePlay(toEl);
+    // prepare next
+    setSrc(toEl, key);
+    toEl.currentTime = 0;
+    toEl.volume = immediate ? (GAIN[key] ?? 0.5) : 0;
+    safePlay(toEl);
 
-  if (immediate) {
-    // hard switch (used at the very first user gesture)
-    try { fromEl.pause(); } catch (e) {}
-    fromEl.currentTime = 0;
-
-    // ✅ flip active เฉพาะตอน immediate (เพราะมันสลับทันทีจริง)
-    active = (active === "a") ? "b" : "a";
-  } else {
-    // ✅ crossfade: ให้ ramp เป็นคน flip active ตอนเฟดจบ
-    ramp(fromEl, toEl, key);
-  }
-}
+    if (immediate) {
+      // hard switch (used at the very first user gesture)
+      try { fromEl.pause(); } catch (e) {}
+      fromEl.currentTime = 0;
+    } else {
+      // crossfade
+      ramp(fromEl, toEl, key);
+    }
 
     // flip active channel
     active = (active === "a") ? "b" : "a";
