@@ -2082,7 +2082,7 @@ const AudioManager = (() => {
   const GAIN = {
     footsteps: 0.50,
     forest23:  0.625,
-    forest46:  0.50,
+    forest46:  0.40,
     forest78:  1.25
   };
 
@@ -2102,7 +2102,7 @@ const AudioManager = (() => {
     if (qIndex <= 0) return "footsteps";        // Q1
     if (qIndex <= 2) return "forest23";         // Q2-Q3
     if (qIndex <= 5) return "forest46";         // Q4-Q6
-    return "forest78";                          // Q7-Q8
+    if (qIndex <= 7)return "forest78";                          // Q7-Q8
   }
 
   function setSrc(audioEl, key) {
