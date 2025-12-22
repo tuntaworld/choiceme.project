@@ -200,7 +200,7 @@
                                       box-shadow: 0 0 20px rgba(255,255,255,0.45); margin: 14px auto 0;
                                       animation: pulseDot 0.9s ease-in-out infinite; }
         .transition-scene .flash { position: absolute; inset: 0; background: white; opacity: 0; pointer-events: none; z-index: 4; }
-        .transition-scene.flash-on .flash { animation: whiteFlash 4.55s ease-out forwards; }
+        .transition-scene.flash-on .flash { animation: whiteFlash 5s ease-out forwards; }
 
         @keyframes forestDrift { 
             0% { transform: translate3d(-1.2%, 0.4%, 0) scale(1.06); }
@@ -2051,7 +2051,7 @@ const IntroSound = (() => {
     setTimeout(() => {
       if (!a1) return;
       try { a1.pause(); a1.currentTime = 0; } catch(e) {}
-    }, 2100);
+    }, 5100);
   }
 
   // Public API
@@ -3882,8 +3882,8 @@ function startQuiz() {
     const flash = document.getElementById('sfx-flash');
 
     // 4) White flash + jump to quiz
-    const flashAtMs = 2100;     // when the white flash happens
-    const goToQuizAtMs = 2150;  // when Q1 appears
+    const flashAtMs = 5100;     // when the white flash happens
+    const goToQuizAtMs = 5150;  // when Q1 appears
 
     window.setTimeout(() => {
         if (transition) transition.classList.add('flash-on');
