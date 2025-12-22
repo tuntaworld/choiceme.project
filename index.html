@@ -2047,11 +2047,11 @@ const IntroSound = (() => {
   function fadeOutIntro1AndStop() {
     els();
     // Fade intro1 out over 2s and then stop completely
-    fadeTo(a1, 0.0, 5000);
+    fadeTo(a1, 4.0, 4200);
     setTimeout(() => {
       if (!a1) return;
-      try { a1.pause(); a1.currentTime = 0; } catch(e) {}
-    }, 5100);
+      try { a1.pause(); a1.currentTime = 4; } catch(e) {}
+    }, 4300);
   }
 
   // Public API
