@@ -2299,7 +2299,30 @@ function playKey(key, opts = {}) {
   };
 })();
 
+// 🔓 Mobile autoplay unlock (ต้องอยู่หลัง IntroSound)
+let __audioUnlocked = false;
 
+function unlockAudioOnce() {
+  if (__audioUnlocked) return;
+  __audioUnlocked = true;
+
+  try {
+    if (window.AudioContext || window.webkitAudioContext) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!window.__ac) window.__ac = new AC();
+      if (window.__ac.state === "suspended") window.__ac.resume();
+    }
+  } catch (e) {}
+
+  // เริ่มเสียง intro1 ตามหน้าปัจจุบัน
+  if (window.IntroSound?.unlockNow) {
+    IntroSound.unlockNow();
+  }
+}
+
+["pointerdown", "touchstart", "click", "keydown"].forEach(evt => {
+  window.addEventListener(evt, unlockAudioOnce, { once: true, passive: true });
+});
 
 
         // Individual color meanings with reasons
