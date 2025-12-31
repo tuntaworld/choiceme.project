@@ -305,32 +305,39 @@
             </div>
             
 <h2 id="story-title-1" class="text-lg text-white mb-2">
-  ในป่าแห่งนี้..
+  บางช่วงของชีวิต
 </h2>
 
 <p id="story-title-2" class="text-lg text-white mb-2">
-  คุณจะพบเรื่องราวที่จะพาคุณกลับไปค้นหาตัวตน
+  เราถูกแต่งแต้มด้วยเสียงจากโลกมากมาย
 </p>
 
-<p id="story-title-3" class="text-lg text-white mb-12">
-  ผ่านสีสันที่ค่อย ๆ ปรากฏขึ้น…
+<p id="story-title-3" class="text-lg text-white mb-6">
+  จนเงาเล็ก ๆ ในใจ…ค่อย ๆ หายไป
 </p>
 
-<p id="story-subtitle-1" class="text-sm text-gray-300 mb-2">
-  แต่ก่อนเริ่ม..
+<p id="story-subtitle-1" class="text-sm text-gray-300 mb-1">
+  แต่ที่นี่
 </p>
-<p id="story-subtitle-2" class="text-sm text-gray-300 mb-12">
-  บางสิ่งกำลังรอคุณอยู่
+<p id="story-subtitle-2" class="text-sm text-gray-300 mb-4">
+  คือที่ที่คุณจะได้กลับมา
 </p>
 
-            <p id="story-question" class="text-gray-300 text-sm mb-12 leading-relaxed">
-                ใช้เวลาประมาณ 5–10 นาที<br>
-                เปิดเสียง..เพื่อเข้าสู่เกม
-            </p>
-            
-            <button onclick="showColorblindIntro()" class="text-white px-12 py-4 organic-shape text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-lg" style="background: linear-gradient(135deg, #A5C6B0, #D4BDDD); transition: all 0.3s ease;" onmouseover="this.style.background='linear-gradient(135deg, #8FB09A, #BFA4C4)'" onmouseout="this.style.background='linear-gradient(135deg, #A5C6B0, #D4BDDD)'">
-                เริ่มเดินทาง
-            </button>
+<p id="story-question" class="text-gray-300 text-sm mb-12 leading-relaxed">
+  ฟังเงานั้น…อีกครั้ง<br>
+  ใช้เวลาประมาณ 5–10 นาที<br>
+  แนะนำให้เปิดเสียงระหว่างการเดินทาง
+</p>
+
+<button
+    onclick="showColorblindIntro()"
+    class="text-white px-12 py-4 organic-shape text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+    style="background: linear-gradient(135deg, #A5C6B0, #D4BDDD); transition: all 0.3s ease;"
+    onmouseover="this.style.background='linear-gradient(135deg, #8FB09A, #BFA4C4)'"
+    onmouseout="this.style.background='linear-gradient(135deg, #A5C6B0, #D4BDDD)'"
+>
+    เข้าสู่ป่า
+</button>
         </div>
     </div>
 
@@ -966,17 +973,17 @@
         let lastSecondaryColor = null;
 
         
-        const translations = {
-            th: {
-                // Story Introduction
-  storyTitle1: "ในป่าแห่งนี้..",
-  storyTitle2: "คุณจะพบเรื่องราวที่จะพาคุณกลับไปค้นหาตัวตน",
-  storyTitle3: "ผ่านสีสันที่ค่อย ๆ ปรากฏขึ้น…",
-  storyDescription1: "แต่ก่อนเริ่ม..",
-  storyDescription2: "บางสิ่งกำลังรอคุณอยู่",
-  storyQuestion1: "ใช้เวลาประมาณ 5–10 นาที",
-  storyQuestion2: "เปิดเสียง..เพื่อเข้าสู่เกม",
-  startJourney: "ดำเนินต่อ",
+const translations = {
+  th: {
+    // Story Introduction
+    storyTitle1: "บางช่วงของชีวิต",
+    storyTitle2: "เราถูกแต่งแต้มด้วยเสียงจากโลกมากมาย",
+    storyTitle3: "จนเงาเล็ก ๆ ในใจ…ค่อย ๆ หายไป",
+    storyDescription1: "แต่ที่นี่",
+    storyDescription2: "คือที่ที่คุณจะได้กลับมา",
+    storyQuestion1: "ฟังเงานั้น…อีกครั้ง",
+    storyQuestion2: "ใช้เวลาประมาณ 5–10 นาที · แนะนำให้เปิดเสียงระหว่างการเดินทาง",
+    startJourney: "เข้าสู่ป่า",
                 
                 // Colorblind Introduction
                 colorblindTitle: "คุณตื่นขึ้น…ในโลกที่สีกำลังหายไป",
@@ -1082,16 +1089,16 @@
                 questionOf: "คำถามที่",
                 of: "จาก"
             },
-            en: {
-// Story Introduction
-    storyTitle1: "In this forest…",
-    storyTitle2: "you will find a story that leads you back to yourself.",
-    storyTitle3: "through colors that slowly begin to appear…",
-    storyDescription1: "Before we begin,",
-    storyDescription2: "something is waiting for you.",
-    storyQuestion1: "This will take about 5–10 minutes.",
-    storyQuestion2: "Turn on the sound… to enter the experience.",
-    startJourney: "Continue",
+  en: {
+    // Story Introduction
+    storyTitle1: "At certain moments in life,",
+    storyTitle2: "we are painted over by so many voices from the world",
+    storyTitle3: "that the small shadow inside us… slowly fades away.",
+    storyDescription1: "But here,",
+    storyDescription2: "is where you can return.",
+    storyQuestion1: "to listen to that shadow… once more.",
+    storyQuestion2: "This will take about 5–10 minutes. We recommend turning on sound during the journey.",
+    startJourney: "Enter the forest",
 
 // Colorblind Introduction
 colorblindTitle: "You wake up… in a world where colors are fading.",
